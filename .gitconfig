@@ -1,0 +1,40 @@
+# Inspired by http://oli.jp/2012/git-powerup/
+
+[color]
+        ui = auto
+        interactive = auto
+[alias]
+        hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+        s = status
+        a = !git add . && git status
+        au = !git add -u . && git status
+        aa = !git add . && git add -u . && git status
+        c = commit
+        cm = commit -m
+        ca = commit --amend # careful
+        ac = !git add . && git commit
+        acm = !git add . && git commit -m
+        l = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+        ll = log --stat --abbrev-commit
+        d = diff --color-words
+        dh = diff --color-words head
+        master = checkout master
+        alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
+[core]
+        excludesfile = /Users/francois/.gitignore
+[difftool "Kaleidoscope"]
+        cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[diff]
+        tool = Kaleidoscope
+[difftool]
+        prompt = false
+[mergetool "Kaleidoscope"]
+        cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+        trustExitCode = true
+[mergetool]
+        prompt = false
+[merge]
+        tool = Kaleidoscope
+[user]
+        name = [name for commits]
+        email = [email for commits]
