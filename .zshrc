@@ -7,6 +7,18 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="franco"
 
+# Fuzzy matching of completions for when you mistype them
+zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:approximate:*' max-errors 10 numeric
+
+# No correction of misspelled commands and arguments
+unsetopt correct
+unsetopt correct_all
+
+setopt histignoredups
+setopt noclobber
+
 # Example aliases
 alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
